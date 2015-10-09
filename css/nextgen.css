@@ -1,0 +1,27 @@
+body{
+	font-family: 'Roboto', sans-serif;
+	margin:0;
+	background-color:#f7f7f7;
+	background-size:contain;
+}
+.nav_btn{
+    background-color:orange;
+    padding:10px;
+    border-radius:10px;
+	cursor:pointer;
+}
+.nav_btn:hover{
+	background-color:white;
+	color:orange;
+}
+.sign_up_btn{
+	cursor:pointer;
+	color:white;
+	background-color:#0079C1;
+	border-radius:10px;
+	padding:10px;
+}
+.sign_up_btn:hover{
+	color:#0079C1;
+	background-color:white;
+}
