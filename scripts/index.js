@@ -1,4 +1,4 @@
-$(function()
+	$(function()
 {
 	hide_all_slides();
 	$('#inbound_or_outbound_slide').show();
@@ -6,8 +6,9 @@ $(function()
 	$("#main_content").height($(window).height() - 115);
 	$("#scrollable_filter_div").height($(window).height() - 278);
 	$("#leads_container").height($(window).height() -170);
-	$("#inbound_or_outbound_slide").show();
+	
 	$("#phone_number").focus();
+	
 	$("#submitted_to").change(function(){
 		var selected = $("#submitted_to").val();
 		if(selected=="Lobos School" || selected=="Lobos CDL")
@@ -46,6 +47,7 @@ $(function()
 			$("#call_form_input").val("");
 		}
 	})
+	
 	$("#parole_question").change(function(){
 		var selected = $("#parole_question").val();
 		if(selected=="Yes")
@@ -193,7 +195,7 @@ function age_next()
 			is_valid = false;
 			refresh_response_table();
 			hide_all_slides();
-			$("#school_opportunity_slide").show();
+			$("#email").show();
 		}
 		else
 		{
@@ -368,42 +370,6 @@ function get_trucker_jobs_qualifier_next()
 		$('#non_qualifier_slide').show();
 	}
 }//get_trucker_jobs_qualifier_next
-function hide_all_slides()
-{
-	$('#inbound_or_outbound_slide').hide();
-	$('#source_of_call_slide').hide();
-	$('#reason_for_call_slide').hide();
-	$('#name_slide').hide();
-	$('#phone_number_slide').hide();
-	$('#address_slide').hide();
-	$('#age_slide').hide();
-	$('#birthday_slide').hide();
-	$('#number_of_tickets_slide').hide();
-	$('#ticket_explanation_slide').hide();
-	$('#number_of_accidents_slide').hide();
-	$('#accident_explanation_slide').hide();
-	$('#license_number_slide').hide();
-	$('#license_state_slide').hide();
-	$('#team_driving_slide').hide();
-	$('#otr_6_slide').hide();
-	$('#transfer_to_school_slide').hide();
-	$('#form_complete_slide').hide();
-	$('#transfer_to_lobos_slide').hide();
-	$('#school_opportunity_slide').hide();
-	$('#non_qualifier_slide').hide();
-	$("#knight_or_crst_slide").hide();
-	$("#get_trucker_jobs_qualifier_slide").hide();
-	$("#rhino_instructions_slide").hide();
-	$("#transfer_to_lobos_school_slide").hide();
-	$("#availability_date_slide").hide();
-	$("#submission_confirmation_slide").hide();
-	$("#submit_lead_slide").hide();
-	$("#notes_on_lead_slide").hide();
-	$("#notes_on_lead_slide").hide();
-	$("#credit_check_slide").hide();
-	$("#parole_slide").hide();
-	
-}//hide_all_slides
 function inbound_or_outbound_next()
 {
 	
@@ -509,8 +475,8 @@ function inbound_or_outbound_next()
 						else
 						{
 							hide_all_slides();
-							$('#address_slide').show();
-							$("#address").focus();
+							$('#age_slide').show();
+							$("#age_question").focus();
 							refresh_response_table();
 						}
 					}
@@ -520,8 +486,8 @@ function inbound_or_outbound_next()
 						console.log("New Lead: "+response);
 						
 						hide_all_slides();
-						$('#address_slide').show();
-						$("#address").focus();
+						$('#age_slide').show();
+						$("#age_question").focus();
 						refresh_response_table();
 					}
 				},
@@ -1113,7 +1079,42 @@ function to_notes()
 
 
 
-
+function hide_all_slides()
+{
+	$('#inbound_or_outbound_slide').hide();
+	$('#source_of_call_slide').hide();
+	$('#reason_for_call_slide').hide();
+	$('#name_slide').hide();
+	$('#phone_number_slide').hide();
+	$('#address_slide').hide();
+	$('#age_slide').hide();
+	$('#birthday_slide').hide();
+	$('#number_of_tickets_slide').hide();
+	$('#ticket_explanation_slide').hide();
+	$('#number_of_accidents_slide').hide();
+	$('#accident_explanation_slide').hide();
+	$('#license_number_slide').hide();
+	$('#license_state_slide').hide();
+	$('#team_driving_slide').hide();
+	$('#otr_6_slide').hide();
+	$('#transfer_to_school_slide').hide();
+	$('#form_complete_slide').hide();
+	$('#transfer_to_lobos_slide').hide();
+	$('#school_opportunity_slide').hide();
+	$('#non_qualifier_slide').hide();
+	$("#knight_or_crst_slide").hide();
+	$("#get_trucker_jobs_qualifier_slide").hide();
+	$("#rhino_instructions_slide").hide();
+	$("#transfer_to_lobos_school_slide").hide();
+	$("#availability_date_slide").hide();
+	$("#submission_confirmation_slide").hide();
+	$("#submit_lead_slide").hide();
+	$("#notes_on_lead_slide").hide();
+	$("#notes_on_lead_slide").hide();
+	$("#credit_check_slide").hide();
+	$("#parole_slide").hide();
+	$("#email_slide").hide();
+}//hide_all_slides
 
 
 

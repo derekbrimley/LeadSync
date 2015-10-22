@@ -257,7 +257,7 @@
 					<div style="float:right" class="slide" id="age_slide">
 						<div class="slide_title">Age</div>
 						<div class="slide_script">
-							"Ok perfect, thanks! And how old are you, <span id="age_first_name"></span>?"
+							"Ok perfect, thanks! The legal age to drive over the road is 21. Can you provide proof that you are 21 or older, <span id="age_first_name"></span>?"
 						</div>
 						<div class="slide_response">
 							<table>
@@ -432,6 +432,25 @@
 							</div>
 						</div>
 						<button type="button" onclick="credit_check_next()" class="next_button">NEXT</button>
+					</div>
+					<div style="float:right" class="slide" id="email_slide">
+						<div class="slide_title">Email Address</div>
+						<div class="slide_script" style="height:138px;">
+							"What is your email address?"
+						</div>
+						<div class="slide_response">
+							<table>
+								<tr>
+									<td>
+										Email Address
+									</td>
+									<td>
+										<input class="call_form_input" name="email_input" id="email_input" type="email" />
+									</td>
+								</tr>
+							</table>
+						</div>
+						<button type="button" onclick="email_next()" class="next_button">NEXT</button>
 					</div>
 					<div style="float:right" class="slide" id="form_complete_slide">
 						<div class="slide_title">Submit Lead</div>

@@ -331,6 +331,6 @@ table{
 #get_trucker_jobs_qualifier_slide,#rhino_instructions_slide,
 #transfer_to_lobos_school_slide,#source_of_call_slide,#availability_date_slide,
 #submission_confirmation_slide,#submit_lead_slide,#notes_on_lead_slide,#credit_check_slide,
-#parole_slide{
+#parole_slide,#email_slide{
 	display:none;
 }
