@@ -1007,6 +1007,8 @@
 							</table>
 						</div>
 					</div>
+					<div>
+					</div>
 					<div style="float:right" class="slide" id="team_driving_slide">
 						<div class="slide_title">Team Driving</div>
 						<div class="slide_script">
@@ -1082,7 +1084,7 @@
 					<div style="float:right" class="slide" id="transfer_to_school_slide">
 						<div class="slide_title">Transfer to Get Trucker Jobs CDL</div>
 						<div class="slide_script" style="height:0px;">
-							<p>Ok, it looks like this opportunity is offered in the state where 
+							<p>"Ok, it looks like this opportunity is offered in the state where 
 							you have your CDL and that you are qualified. I'm going to transfer you now."</p>
 						</div>
 						<div class="slide_response">
@@ -1098,6 +1100,29 @@
 							and complete transfer</p>
 						</div>
 						<button type="button" onclick="transfer_to_school_next()" class="next_button" style="margin-top:180px;">Complete</button>
+					</div>
+					<div  style="float:right" class="slide" id="valid_license_slide">
+						<div class="slide_title">Valid Driver's License</div>
+						<div class="slide_script" style="height:0px;">
+							<p>"Do you have a valid driver's license?"</p>
+						</div>
+						<div class="slide_response">
+							<table>
+								<tr>
+									<td>
+										Response
+									</td>
+									<td>
+										<select class="call_form_input" name="valid_license_question" id="valid_license_question">
+											<option value="">Select</option>
+											<option>Yes</option>
+											<option>No</option>
+										</select>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<button type="button" onclick="valid_license_next()" class="next_button" style="margin-top:180px;">NEXT</button>
 					</div>
 				</form>
 			</div>

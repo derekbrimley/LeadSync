@@ -1,5 +1,4 @@
-	$(function()
-{
+$(function(){
 	hide_all_slides();
 	$('#inbound_or_outbound_slide').show();
 	
@@ -83,9 +82,24 @@
         }
 	});
 	
+	
 });//ready
-function accident_explanation_next()
-{
+
+//FILTERS
+var min_age_cdl_filter = $("#min_age_cdl_filter").val();
+var max_age_cdl_filter = $("#max_age_cdl_filter").val();
+var min_age_school_filter = $("#min_age_cdl_filter").val();
+var max_age_school_filter = $("#max_age_cdl_filter").val();
+var max_tickets_filter = $("#max_tickets_filter").val();
+var drivers_needed_filter = $("#drivers_needed_filter").val();
+
+//GLOBAL VARIABLES
+var call_type = null;
+var reason_for_call = null;
+function isInArray(value, array){
+  return array.indexOf(value) > -1;
+}
+function accident_explanation_next(){
 	
 	//MAKE SLIDE 11 INVISIBLE, MOVE ON TO NEXT QUESTION, BASED ON RESPONSE
 	var accident_explanation = $('#accident_explanation_question').val();
@@ -134,15 +148,13 @@ function accident_explanation_next()
 		}
 	}
 }//accident_explanation_next
-function add_first_name()
-{
+function add_first_name(){
 	var first_name=$("#first_name").val();
 	$("#phone_first_name").html(first_name);
 	$("#age_first_name").html(first_name);
 	//console.log(first_name);
 }
-function address_next()
-{
+function address_next(){
 	
 	//MAKE SLIDE 5 INVISIBLE, MOVE ON TO NEXT QUESTION, BASED ON RESPONSE
 	var address = $('#address').val();
@@ -150,23 +162,29 @@ function address_next()
 	var state = $('#state').val();
 	var zip = $("#zip_code").val();
 	
+	var western_states = ['WA','OR','CA','ID','UT','AZ','MT','CO','WY','NM','TX','OK','KS','NE','SD','ND'];
+	
 	var is_valid = true;
 	
-	if(address==""||city==""||state==""||zip=="")
-	{
+	if(address==""||city==""||state==""||zip==""){
 		is_valid = false;
 		alert("Please input a valid address, city, state, and zip code.");
 	}
-	if(is_valid==true)
-	{
-		refresh_response_table();
+	if(is_valid==true){
 		hide_all_slides();
-		$('#age_slide').show();
-		$("#age_question").focus();
+		if(isInArray(state,western_states)){
+			refresh_response_table();
+			
+			$('#otr_6_slide').show();
+			$("#otr_6_question").focus();
+		}else{
+			$('#school_opportunity_slide').show();
+			$("#school_opportunity_question").focus();
+		}
+		
 	}
 }//address_next
-function age_next()
-{
+function age_next(){
 	
 	//MAKE SLIDE 6 INVISIBLE, MOVE ON TO NEXT QUESTION, BASED ON RESPONSE
 	var reason_for_calling = $("#reason_for_call_question").val();
@@ -231,8 +249,7 @@ function age_next()
 	}
 	
 }//age_next
-function availability_date_next()
-{
+function availability_date_next(){
 	var availability_date = $("#availability_date_question").val();
 	var is_valid = true;
 	
@@ -248,8 +265,7 @@ function availability_date_next()
 		$("#transferred_to").focus();
 	}
 }
-function birthday_next()
-{
+function birthday_next(){
 	
 	//MAKE SLIDE 7 INVISIBLE, MOVE ON TO NEXT QUESTION, BASED ON RESPONSE
 	var month = $("#birth_month").val();
@@ -271,8 +287,7 @@ function birthday_next()
 		$("#parole_question").focus();
 	}
 }//birthday_next
-function credit_check_next()
-{
+function credit_check_next(){
 	var credit_filter = $("#credit_filter").val();
 	var credit_score = $("#credit_score_input").val();
 	var credit_check_question = $("#credit_check_question").val();
@@ -310,8 +325,17 @@ function credit_check_next()
 		$("#school_opportunity_question").focus();
 	}
 }
-function form_complete_next()
-{
+function email_next(){
+	
+	hide_all_slides();
+	if(reason_for_call=="Class A"){
+		$("#license_number_slide").show();
+	}else if(reason_for_call=="School"){
+		$("#valid_license_slide").show();
+	}
+	
+}
+function form_complete_next(){
 	refresh_response_table();
 	var is_valid = true;
 	var submitted_to = $("#submitted_to").val();
@@ -346,8 +370,7 @@ function form_complete_next()
 	}
 	
 }
-function get_trucker_jobs_qualifier_next()
-{
+function get_trucker_jobs_qualifier_next(){
 	//MAKE SLIDE 5 INVISIBLE, MOVE ON TO NEXT QUESTION, BASED ON RESPONSE
 	var gtj_resp = $("#get_trucker_jobs_qualifier_question").val();
 	var is_valid = true;
@@ -370,17 +393,16 @@ function get_trucker_jobs_qualifier_next()
 		$('#non_qualifier_slide').show();
 	}
 }//get_trucker_jobs_qualifier_next
-function inbound_or_outbound_next()
-{
+function inbound_or_outbound_next(){
 	
 	//MAKE SLIDE 1 INVISIBLE, MOVE ON TO NEXT QUESTION, BASED ON RESPONSE
-	var call_type = $("#inbound_or_outbound_question").val();
+	call_type = $("#inbound_or_outbound_question").val();
 	var source_of_call = $("#source_of_call_question").val();
 	var phone_number = $("#phone_number").val();
 	var stripped_number = phone_number.replace(/\D/g,'');
 	var first_name = $('#first_name').val();
 	var last_name = $('#last_name').val();
-	var reason_for_call = $("#reason_for_call_question").val();
+	reason_for_call = $("#reason_for_call_question").val();
 	var is_valid = true;
 	//console.log("Stripped Number: "+stripped_number)
 	
@@ -501,8 +523,7 @@ function inbound_or_outbound_next()
 		})//ajax
 	}
 }//inbound_or_outbound_next
-function knight_or_crst_next()
-{
+function knight_or_crst_next(){
 	
 	//MAKE SLIDE 5 INVISIBLE, MOVE ON TO NEXT QUESTION, BASED ON RESPONSE
 	var knight_resp = $("#knight_or_crst_question").val();
@@ -529,8 +550,7 @@ function knight_or_crst_next()
 	}
 	
 }//transfer_to_lobos_next
-function license_number_next()
-{
+function license_number_next(){
 	
 	//MAKE SLIDE 11 INVISIBLE, MOVE ON TO NEXT QUESTION, BASED ON RESPONSE
 	var license_number = $('#license_number_question').val();
@@ -549,8 +569,7 @@ function license_number_next()
 		$("#license_state_question").focus();
 	}
 }//license_number_next
-function license_state_next()
-{
+function license_state_next(){
 	
 	//MAKE SLIDE 13 INVISIBLE, MOVE ON TO NEXT QUESTION, BASED ON RESPONSE
 	var license_state = $('#license_state_question').val();
@@ -581,8 +600,7 @@ function license_state_next()
 		}
 	}
 }//license_state_next
-function non_qualifier_next()
-{
+function non_qualifier_next(){
 	refresh_response_table();
 	
 	//MAKE SLIDE 5 INVISIBLE, MOVE ON TO NEXT QUESTION, BASED ON RESPONSE
@@ -590,8 +608,7 @@ function non_qualifier_next()
 	$('#form_complete_slide').show();
 	$("#transferred_to").focus();
 }//non_qualifier_next
-function notes_on_lead_next()
-{
+function notes_on_lead_next(){
 	refresh_response_table();
 	var is_valid = true;
 	var notes = $("#notes_on_lead_input").val();
@@ -608,8 +625,7 @@ function notes_on_lead_next()
 		$("#submit_btn").focus();
 	}
 }
-function number_of_accidents_next()
-{
+function number_of_accidents_next(){
 	//MAKE SLIDE 10 INVISIBLE, MOVE ON TO NEXT QUESTION, BASED ON RESPONSE
 	
 	var accidents = $("#number_of_accidents_question").val()
@@ -659,8 +675,7 @@ function number_of_accidents_next()
 		
 	}
 }//number_of_accidents_next
-function number_of_tickets_next()
-{
+function number_of_tickets_next(){
 	var tickets = $("#number_of_tickets_question").val();
 	var max_tickets = $("#max_tickets_filter").val();
 	var reason_for_call = $("#reason_for_call_question").val();
@@ -688,8 +703,7 @@ function number_of_tickets_next()
 		$("#ticket_explanation_question").focus();
 	}
 }//number_of_tickets_next
-function otr_6_next()
-{
+function otr_6_next(){
 	
 	//MAKE SLIDE 13 INVISIBLE, MOVE ON TO NEXT QUESTION, BASED ON RESPONSE
 	var resp = $("#otr_6_question").val();
@@ -716,8 +730,7 @@ function otr_6_next()
 	}
 	
 }//otr_6_next
-function parole_slide_next()
-{
+function parole_slide_next(){
 	var parole_question = $("#parole_question").val();
 	var states_question = $("#48_states_question").val();
 	var reason_for_call = $("#reason_for_call_question").val();
@@ -758,8 +771,7 @@ function parole_slide_next()
 		$("#number_of_tickets_question").focus();
 	}
 }
-function refresh_response_table()
-{
+function refresh_response_table(){
 	//INBOUND OR OUTBOUND
 	$('#type_of_call_response').html($('#inbound_or_outbound_question').val());
 	
@@ -845,8 +857,7 @@ function refresh_response_table()
 	//NOTES
 	$('#notes_response').html($('#notes_on_lead_input').val());
 }//refresh_response_table
-function rhino_instructions_slide_next()
-{
+function rhino_instructions_slide_next(){
 	
 	//MAKE SLIDE 5 INVISIBLE, MOVE ON TO NEXT QUESTION, BASED ON RESPONSE
 	var rhino_resp = $("#rhino_instructions_question").val();
@@ -873,8 +884,7 @@ function rhino_instructions_slide_next()
 	}
 	
 }//transfer_to_lobos_next
-function school_opportunity_next()
-{
+function school_opportunity_next(){
 	
 	//MAKE SLIDE 7 INVISIBLE, MOVE ON TO NEXT QUESTION, BASED ON RESPONSE
 	var school_decision = $("#school_opportunity_question").val();
@@ -899,8 +909,7 @@ function school_opportunity_next()
 	}
 	
 }//school_opportunity_next
-function show_name_div()
-{
+function show_name_div(){
 	//console.log("clicked");
 	var reason_for_call_question = $("#reason_for_call_question").val();
 	if(reason_for_call_question=="School" ||reason_for_call_question=="Class A")
@@ -916,8 +925,7 @@ function show_name_div()
 		$("#last_name").val("");
 	}
 }
-function source_of_call_next()
-{
+function source_of_call_next(){
 	var source_of_call = $("#source_of_call_question").val();
 	
 	var is_valid = true;
@@ -935,8 +943,7 @@ function source_of_call_next()
 		refresh_response_table();
 	}
 }
-function submit_lead_next()
-{
+function submit_lead_next(){
 	hide_all_slides();
 	$("#submission_confirmation_slide").show();
 	dataString = $("#lead_form").serialize();
@@ -973,8 +980,7 @@ function submit_lead_next()
 		}, 3000);
 	}
 }
-function team_driving_next()
-{
+function team_driving_next(){
 	
 	//MAKE SLIDE 13 INVISIBLE, MOVE ON TO NEXT QUESTION, BASED ON RESPONSE
 	var team_response = $('#team_driving_question').val();
@@ -1000,8 +1006,7 @@ function team_driving_next()
 		$("#knight_or_crst_question").focus();
 	}
 }//team_driving_next
-function ticket_explanation_next()
-{
+function ticket_explanation_next(){
 	
 	//MAKE SLIDE 9 INVISIBLE, MOVE ON TO NEXT QUESTION, BASED ON RESPONSE
 	var ticket_explanation = $('#ticket_explanation_question').val();
@@ -1020,21 +1025,18 @@ function ticket_explanation_next()
 		$("#ticket_explanation_question").focus();
 	}
 }//ticket_explanation_next
-function to_number_of_accidents()
-{
+function to_number_of_accidents(){
 	hide_all_slides();
 	$("#number_of_accidents_slide").show();
 	$("#ticket_explanation_question").focus();
 }
-function to_type_of_call_question()
-{
+function to_type_of_call_question(){
 	hide_all_slides();
 	$('#inbound_or_outbound_slide').show();
 	$("#inbound_or_outbound_question").focus();
 	refresh_response_table();
 }
-function transfer_to_lobos_next()
-{
+function transfer_to_lobos_next(){
 	refresh_response_table();
 	
 	//MAKE SLIDE 5 INVISIBLE, MOVE ON TO NEXT QUESTION, BASED ON RESPONSE
@@ -1042,14 +1044,12 @@ function transfer_to_lobos_next()
 	$('#form_complete_slide').show();
 	$("#transfer_lobos_btn").focus();
 }//transfer_to_lobos_next
-function transfer_to_lobos_school_next()
-{
+function transfer_to_lobos_school_next(){
 	hide_all_slides();
 	$("#form_complete_slide").show();
 	$("#transferred_to").focus();
 }
-function transfer_to_school_next()
-{
+function transfer_to_school_next(){
 	refresh_response_table();
 	
 	//MAKE SLIDE 13 INVISIBLE, MOVE ON TO NEXT QUESTION, BASED ON RESPONSE
@@ -1057,30 +1057,36 @@ function transfer_to_school_next()
 	$('#form_complete_slide').show();
 	$("#transferred_to").focus();
 }//transfer_to_school_next
-function to_availability_date()
-{
+function to_availability_date(){
 	hide_all_slides();
 	$("#availability_date_slide").show();
 	$("#availability_date_question").focus();
 }
-function to_form_complete()
-{
+function to_form_complete(){
 	hide_all_slides();
 	$("#form_complete_slide").show();
 	$("#transferred_to").focus();
 }
-function to_notes()
-{
+function to_notes(){
 	hide_all_slides();
 	$("#notes_on_lead_slide").show();
 	$("#notes_on_lead_input").focus();
 }
+function valid_license_next(){
+	var valid_license = $("#valid_license_question").val();
+	
+	hide_all_slides();
+	
+	if(valid_license=="Yes"){
+		$("#address_slide").show();
+	}else if(valid_license=="No"{
+		$("#non_qualifier_slide").show();
+	}
+}
 
 
 
-
-function hide_all_slides()
-{
+function hide_all_slides(){
 	$('#inbound_or_outbound_slide').hide();
 	$('#source_of_call_slide').hide();
 	$('#reason_for_call_slide').hide();
