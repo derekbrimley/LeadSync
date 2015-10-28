@@ -75,6 +75,10 @@
 						<td><a class="response_link" onclick="age_next()" id="date_of_birth_response"></a></td>
 					</tr>
 					<tr>
+						<td>Email Address</td>
+						<td><a class="response_link" onclick="birthday_next()" id="email_response"></a></td>
+					</tr>
+					<tr>
 						<td>Number of Tickets</td>
 						<td><a class="response_link" onclick="birthday_next()" id="number_of_tickets_response"></a></td>
 					</tr>
@@ -892,6 +896,29 @@
 						</div>
 						<button type="button" onclick="parole_slide_next()" class="next_button">NEXT</button>
 					</div>
+					<div>
+						<div class="slide_title">Six Week Commitment</div>
+						<div class="slide_script" style="height:100px;">
+							"Do you have any commitments, obligations, or restrictions that would prevent you from being out of state for six or more weeks at a time?"
+						</div>
+						<div class="slide_response">
+							<table>
+								<tr>
+									<td>
+										Response
+									</td>
+									<td>
+										<select class="call_form_input" name="six_week_question" id="six_week_question">
+											<option value="">Select</option>
+											<option>Yes</option>
+											<option>No</option>
+										</select>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<button type="button" onclick="six_week_next()" class="next_button">NEXT</button>
+					</div>
 					<div style="float:right" class="slide" id="rhino_instructions_slide">
 						<div class="slide_title">Rhino Labs Instructions</div>
 						<div class="slide_script">
@@ -1083,7 +1110,7 @@
 					</div>
 					<div style="float:right" class="slide" id="transfer_to_school_slide">
 						<div class="slide_title">Transfer to Get Trucker Jobs CDL</div>
-						<div class="slide_script" style="height:0px;">
+						<div class="slide_script">
 							<p>"Ok, it looks like this opportunity is offered in the state where 
 							you have your CDL and that you are qualified. I'm going to transfer you now."</p>
 						</div>
@@ -1103,7 +1130,7 @@
 					</div>
 					<div  style="float:right" class="slide" id="valid_license_slide">
 						<div class="slide_title">Valid Driver's License</div>
-						<div class="slide_script" style="height:0px;">
+						<div class="slide_script">
 							<p>"Do you have a valid driver's license?"</p>
 						</div>
 						<div class="slide_response">

@@ -6,7 +6,7 @@ $(function(){
 	$("#scrollable_filter_div").height($(window).height() - 278);
 	$("#leads_container").height($(window).height() -170);
 	
-	$("#phone_number").focus();
+	$("#inbound_or_outbound_question").focus();
 	
 	$("#submitted_to").change(function(){
 		var selected = $("#submitted_to").val();
@@ -283,8 +283,8 @@ function birthday_next(){
 	{
 		refresh_response_table();
 		hide_all_slides();
-		$('#parole_slide').show();
-		$("#parole_question").focus();
+		$('#email_slide').show();
+		$("#email_input").focus();
 	}
 }//birthday_next
 function credit_check_next(){
@@ -326,6 +326,8 @@ function credit_check_next(){
 	}
 }
 function email_next(){
+	
+	refresh_response_table();	
 	
 	hide_all_slides();
 	if(reason_for_call=="Class A"){
@@ -771,92 +773,6 @@ function parole_slide_next(){
 		$("#number_of_tickets_question").focus();
 	}
 }
-function refresh_response_table(){
-	//INBOUND OR OUTBOUND
-	$('#type_of_call_response').html($('#inbound_or_outbound_question').val());
-	
-	//REASON
-	$('#reason_for_calling_response').html($('#reason_for_call_question').val());
-	
-	//NAME
-	$('#first_name_response').html($('#first_name').val());
-	$('#last_name_response').html($('#last_name').val());
-	$("#transfer_first_name").html($('#first_name').val());
-	$('#transfer_last_name').html($('#last_name').val());
-	
-	//PHONE
-	var phone_number = $("#phone_number").val();
-	//console.log(phone_number);
-	if(phone_number=="")
-	{
-	}
-	else
-	{
-		$('#phone_number_response').html("("+phone_number.slice(0,3)+") "+phone_number.slice(3,6)+"-"+phone_number.slice(6,10));
-		$('#phone_number_script').html("("+phone_number.slice(0,3)+") "+phone_number.slice(3,6)+"-"+phone_number.slice(6,10));
-		$('#transfer_phone').html("("+phone_number.slice(0,3)+") "+phone_number.slice(3,6)+"-"+phone_number.slice(6,10));
-	}
-	
-	//ADDRESS
-	$('#address_response').html($('#address').val());
-	$('#city_response').html($('#city').val());
-	$('#state_response').html($('#state').val());
-	$("#zip_code_response").html($("#zip_code").val());
-	$('#transfer_city').html($('#city').val());
-	$('#transfer_state').html($('#state').val());
-	
-	//AGE
-	$('#age_response').html($('#age_question').val());
-	
-	//BIRTHDAY
-	var birthday = $('#birth_month').val() + " " + $('#birth_day').val() + ", " + $('#birth_year').val();
-	if($('#birth_month').val()=="")
-	{
-	}
-	else
-	{
-		$('#date_of_birth_response').html(birthday);
-	}
-	
-	//NUMBER OF TICKETS
-	$('#number_of_tickets_response').html($('#number_of_tickets_question').val());
-	
-	//TICKET DETAILS
-	$("#ticket_details_response").html($('#ticket_explanation_question').val());
-	
-	//NUMBER OF ACCIDENTS
-	$('#number_of_accidents_response').html($('#number_of_accidents_question').val());
-	
-	//ACCIDENT DETAILS
-	$("#accident_details_response").html($('#accident_explanation_question').val());
-	
-	$("#credit_score_response").html($('#credit_score_input').val());
-	
-	//LICENSE NUMBER
-	$('#license_number_response').html($('#license_number_question').val());
-	$('#transfer_class_a').html($('#license_number_question').val());
-	
-	//LICENSE STATE
-	$('#license_state_response').html($('#license_state_question').val());
-	
-	//TEAM DRIVING
-	$('#team_driving_response').html($('#team_driving_question').val());
-	
-	//OTR FOR 6 WEEKS
-	$('#otr_6_weeks_response').html($('#otr_6_question').val());
-	
-	//AVAILABILITY DATE
-	$('#availability_date_response').html($('#availability_date_question').val());
-	
-	//TRANSFERRED TO
-	$('#transferred_to_response').html($('#transferred_to').val());
-	
-	//SUBMITTED TO
-	$('#submitted_to_response').html($('#submitted_to').val());
-	
-	//NOTES
-	$('#notes_response').html($('#notes_on_lead_input').val());
-}//refresh_response_table
 function rhino_instructions_slide_next(){
 	
 	//MAKE SLIDE 5 INVISIBLE, MOVE ON TO NEXT QUESTION, BASED ON RESPONSE
@@ -923,6 +839,26 @@ function show_name_div(){
 		$("#name_script").hide();
 		$("#first_name").val("");
 		$("#last_name").val("");
+	}
+}
+function six_week_next(){
+	var six_week_response = $("#six_week_question").val();
+	
+	if(six_week_response==""){
+		alert("Please enter the response.");
+	}
+	else if(six_week_response=="Yes"){
+		hide_all_slides();
+		if(reason_for_call=="Class A"){
+			$("#knight_or_crst_slide").show();
+			$("#knight_or_crst_question").focus();
+		}else if(reason_for_call=="School"){
+			$("#school_opportunity_slide").show();
+			$("#school_opportunity_question").focus();
+		}
+	}else if(six_week_response=="No"){
+		$("#number_of_tickets_slide").show();
+		$("#number_of_tickets_question").focus();
 	}
 }
 function source_of_call_next(){
@@ -1022,7 +958,7 @@ function ticket_explanation_next(){
 		refresh_response_table();
 		hide_all_slides();
 		$('#number_of_accidents_slide').show();
-		$("#ticket_explanation_question").focus();
+		$("#number_of_accidents_question").focus();
 	}
 }//ticket_explanation_next
 function to_number_of_accidents(){
@@ -1079,7 +1015,7 @@ function valid_license_next(){
 	
 	if(valid_license=="Yes"){
 		$("#address_slide").show();
-	}else if(valid_license=="No"{
+	}else if(valid_license=="No"){
 		$("#non_qualifier_slide").show();
 	}
 }
@@ -1120,10 +1056,99 @@ function hide_all_slides(){
 	$("#credit_check_slide").hide();
 	$("#parole_slide").hide();
 	$("#email_slide").hide();
+	$("#valid_license_slide").hide();
 }//hide_all_slides
 
 
-
+function refresh_response_table(){
+	//INBOUND OR OUTBOUND
+	$('#type_of_call_response').html($('#inbound_or_outbound_question').val());
+	
+	//REASON
+	$('#reason_for_calling_response').html($('#reason_for_call_question').val());
+	
+	//NAME
+	$('#first_name_response').html($('#first_name').val());
+	$('#last_name_response').html($('#last_name').val());
+	$("#transfer_first_name").html($('#first_name').val());
+	$('#transfer_last_name').html($('#last_name').val());
+	
+	//PHONE
+	var phone_number = $("#phone_number").val();
+	//console.log(phone_number);
+	if(phone_number=="")
+	{
+	}
+	else
+	{
+		$('#phone_number_response').html("("+phone_number.slice(0,3)+") "+phone_number.slice(3,6)+"-"+phone_number.slice(6,10));
+		$('#phone_number_script').html("("+phone_number.slice(0,3)+") "+phone_number.slice(3,6)+"-"+phone_number.slice(6,10));
+		$('#transfer_phone').html("("+phone_number.slice(0,3)+") "+phone_number.slice(3,6)+"-"+phone_number.slice(6,10));
+	}
+	
+	//ADDRESS
+	$('#address_response').html($('#address').val());
+	$('#city_response').html($('#city').val());
+	$('#state_response').html($('#state').val());
+	$("#zip_code_response").html($("#zip_code").val());
+	$('#transfer_city').html($('#city').val());
+	$('#transfer_state').html($('#state').val());
+	
+	//AGE
+	$('#age_response').html($('#age_question').val());
+	
+	//BIRTHDAY
+	var birthday = $('#birth_month').val() + " " + $('#birth_day').val() + ", " + $('#birth_year').val();
+	if($('#birth_month').val()=="")
+	{
+	}
+	else
+	{
+		$('#date_of_birth_response').html(birthday);
+	}
+	
+	//EMAIL ADDRESS
+	$('#email_response').html($('#email_input').val());
+	
+	//NUMBER OF TICKETS
+	$('#number_of_tickets_response').html($('#number_of_tickets_question').val());
+	
+	//TICKET DETAILS
+	$("#ticket_details_response").html($('#ticket_explanation_question').val());
+	
+	//NUMBER OF ACCIDENTS
+	$('#number_of_accidents_response').html($('#number_of_accidents_question').val());
+	
+	//ACCIDENT DETAILS
+	$("#accident_details_response").html($('#accident_explanation_question').val());
+	
+	$("#credit_score_response").html($('#credit_score_input').val());
+	
+	//LICENSE NUMBER
+	$('#license_number_response').html($('#license_number_question').val());
+	$('#transfer_class_a').html($('#license_number_question').val());
+	
+	//LICENSE STATE
+	$('#license_state_response').html($('#license_state_question').val());
+	
+	//TEAM DRIVING
+	$('#team_driving_response').html($('#team_driving_question').val());
+	
+	//OTR FOR 6 WEEKS
+	$('#otr_6_weeks_response').html($('#otr_6_question').val());
+	
+	//AVAILABILITY DATE
+	$('#availability_date_response').html($('#availability_date_question').val());
+	
+	//TRANSFERRED TO
+	$('#transferred_to_response').html($('#transferred_to').val());
+	
+	//SUBMITTED TO
+	$('#submitted_to_response').html($('#submitted_to').val());
+	
+	//NOTES
+	$('#notes_response').html($('#notes_on_lead_input').val());
+}//refresh_response_table
 
 
 
