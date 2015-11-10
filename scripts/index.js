@@ -96,6 +96,8 @@ var drivers_needed_filter = $("#drivers_needed_filter").val();
 //GLOBAL VARIABLES
 var call_type = null;
 var reason_for_call = null;
+var accidents = null;
+
 function isInArray(value, array){
   return array.indexOf(value) > -1;
 }
@@ -107,46 +109,26 @@ function accident_explanation_next(){
 	var tickets = $("#number_of_tickets_question").val();
 	var max_tickets = $("#max_tickets_filter").val();
 	var credit_filter = $("#credit_filter").val();
-	var is_valid = true;
 	
 	if(accident_explanation=="")
 	{
 		is_valid = false;
 		alert("Please write in an explanation.");
-	}
-	if(is_valid)
-	{
-		if(reason_for_call=="School" && tickets<=max_tickets)
+	}else{
+		refresh_response_table();
+		hide_all_slides();
+		if(reason_for_call=="School")
 		{
-			if(credit_filter>0)
-			{
-				refresh_response_table();
-				hide_all_slides();
-				$("#credit_check_slide").show();
-				$("#credit_check_question").focus();
-			}
-			else
-			{
-				refresh_response_table();
-				hide_all_slides();
-				$("#transfer_to_lobos_school_slide").show();
-			}
+			$("#fifteen_week_slide").show();
+			$("#fifteen_week_question").focus();
 		}
-		else if(reason_for_call=="School" && tickets>max_tickets)
+		else if(reason_for_call=="Class A")
 		{
-			refresh_response_table();
-			hide_all_slides();
-			$('#school_opportunity_slide').show();
-			$("#school_opportunity_question").focus();
-		}
-		else
-		{
-			refresh_response_table();
-			hide_all_slides();
-			$('#license_number_slide').show();
-			$("#license_number_question").focus();
+			$('#otr_6_slide').show();
+			$("#otr_6_question").focus();
 		}
 	}
+		
 }//accident_explanation_next
 function add_first_name(){
 	var first_name=$("#first_name").val();
@@ -172,82 +154,48 @@ function address_next(){
 	}
 	if(is_valid==true){
 		hide_all_slides();
-		if(isInArray(state,western_states)){
-			refresh_response_table();
-			
-			$('#otr_6_slide').show();
-			$("#otr_6_question").focus();
-		}else{
-			$('#school_opportunity_slide').show();
-			$("#school_opportunity_question").focus();
+		refresh_response_table();
+		if(reason_for_call=="School"){
+			if(isInArray(state,western_states)){
+				$('#six_week_slide').show();
+				$("#six_week_question").focus();
+			}else{
+				$('#school_opportunity_slide').show();
+				$("#school_opportunity_question").focus();
+			}
+		}else if(reason_for_call=="Class A"){
+			$('#email_slide').show();
+			$("#email_input").focus();
 		}
-		
 	}
 }//address_next
 function age_next(){
 	
 	//MAKE SLIDE 6 INVISIBLE, MOVE ON TO NEXT QUESTION, BASED ON RESPONSE
 	var reason_for_calling = $("#reason_for_call_question").val();
-	var age = $("#age_question").val();
+	var response = $("#age_question").val();
 	var min_age_cdl = $("#min_age_cdl_filter").val();
 	var max_age_cdl = $("max_age_cdl_filter").val();
 	var min_age_school = $("#min_age_school_filter").val();
 	var max_age_school = $("max_age_school_filter").val();
-	var is_valid = true;
 	
-	if(age=="")
-	{
-		is_valid = false;
+	if(response==""){
 		alert("Please select an age.");
-	}
-	else if(age=="<21")
-	{
+	}else{
 		hide_all_slides();
-		$("#non_qualifier_slide").show();
 		refresh_response_table();
-	}
-	else if(is_valid==true && reason_for_calling == "School")
-	{
-		if(age<=min_age_school || age>max_age_school)
-		{
-			is_valid = false;
-			refresh_response_table();
-			hide_all_slides();
-			$("#email").show();
-		}
-		else
-		{
-			refresh_response_table();
-			hide_all_slides();
-			$("#birthday_slide").show();
-			$("#birth_month").focus();
+		if(response=="Yes"){
+			if(reason_for_calling=="School"){
+				$("#email_slide").show();
+				$("#email_input").focus();
+			}else if(reason_for_calling=="Class A"){
+				$("#address_slide").show();
+				$("#address").focus();
+			}
+		}else{
+			$("#non_qualifier_slide").show();
 		}
 	}
-	else if(is_valid==true && reason_for_calling == "Class A")
-	{
-		if(age<=min_age_cdl || age>max_age_cdl)
-		{
-			is_valid = false;
-			refresh_response_table();
-			hide_all_slides();
-			$("#rhino_instructions_slide").show();
-		}
-		else
-		{
-			refresh_response_table();
-			hide_all_slides();
-			$("#birthday_slide").show();
-			$("#birth_month").focus();
-		}
-	}
-	else
-	{
-		refresh_response_table();
-		hide_all_slides();
-		$("#form_complete_slide").show();
-		$("#transferred_to").focus();
-	}
-	
 }//age_next
 function availability_date_next(){
 	var availability_date = $("#availability_date_question").val();
@@ -326,16 +274,33 @@ function credit_check_next(){
 	}
 }
 function email_next(){
+	var email = $("#email_input").val();
 	
-	refresh_response_table();	
-	
-	hide_all_slides();
-	if(reason_for_call=="Class A"){
-		$("#license_number_slide").show();
-	}else if(reason_for_call=="School"){
-		$("#valid_license_slide").show();
+	if(email==''){
+		alert("Please input response.");
+	}else{
+		refresh_response_table();	
+		hide_all_slides();
+		
+		if(reason_for_call=="Class A"){
+			$("#valid_cdl_slide").show();
+			$("#valid_cdl_question").focus();
+		}else if(reason_for_call=="School"){
+			$("#valid_license_slide").show();
+			$("#valid_license_question").focus();
+		}
 	}
+}
+function emergency_contact_next(){
+	var emergency_contact = $("#emergency_contact_input").val();
 	
+	if(emergency_contact==''){
+		alert("Please input the response");
+	}else{
+		hide_all_slides();
+		$("#availability_date_slide").show();
+		$("#availability_date_question").focus();
+	}
 }
 function form_complete_next(){
 	refresh_response_table();
@@ -371,6 +336,23 @@ function form_complete_next(){
 		$("#notes_on_lead_input").focus();
 	}
 	
+}
+function fifteen_week_next(){
+	var fifteen_week_response = $("#fifteen_week_question").val();
+	
+	if(fifteen_week_response==''){
+		alert("Please enter the response.");
+	}else{
+		hide_all_slides();
+		refresh_response_table();
+		if(fifteen_week_next=="Yes"){
+			$("#otr_6_slide").show();
+			$("#otr_6_question").focus();
+		}else if(fifteen_week_next=="No"){
+			$("#school_opportunity_slide").show();
+			$("#school_opportunity_question").focus();
+		}
+	}
 }
 function get_trucker_jobs_qualifier_next(){
 	//MAKE SLIDE 5 INVISIBLE, MOVE ON TO NEXT QUESTION, BASED ON RESPONSE
@@ -575,31 +557,15 @@ function license_state_next(){
 	
 	//MAKE SLIDE 13 INVISIBLE, MOVE ON TO NEXT QUESTION, BASED ON RESPONSE
 	var license_state = $('#license_state_question').val();
-	var drivers_needed = $("drivers_needed_filter").val();
-	var states_question = $("#48_states_question").val();
-	var is_valid = true;
 	
 	if(license_state=="")
 	{
-		is_valid = false;
 		alert("Please select the license state.");
-	}
-	if(is_valid)
-	{
-		if(drivers_needed=="FALSE" || states_question=="No")
-		{
-			refresh_response_table();
-			hide_all_slides();
-			$('#knight_or_crst_slide').show();
-			$("#knight_or_crst_question").focus();
-		}
-		else
-		{
-			refresh_response_table();
-			hide_all_slides();
-			$('#team_driving_slide').show();
-			$("#team_driving_question").focus();
-		}
+	}else{
+		refresh_response_table();
+		hide_all_slides();
+		$('#emergency_contact_slide').show();
+		$("#emergency_contact_input").focus();
 	}
 }//license_state_next
 function non_qualifier_next(){
@@ -630,107 +596,92 @@ function notes_on_lead_next(){
 function number_of_accidents_next(){
 	//MAKE SLIDE 10 INVISIBLE, MOVE ON TO NEXT QUESTION, BASED ON RESPONSE
 	
-	var accidents = $("#number_of_accidents_question").val()
+	accidents = $("#number_of_accidents_question").val()
 	var reason_for_call = $("#reason_for_call_question").val();
 	var tickets = $("#number_of_tickets_question").val();
 	var max_tickets = $("#max_tickets_filter").val();
 	var credit_filter = $("#credit_filter").val();
-	var is_valid = true;
 	
-	if(accidents=="")
-	{
-		is_valid = false;
+	if(accidents==""){
 		alert("Please select a number of tickets.");
-	}
-	else if(accidents=="0" && is_valid)
-	{
-		if(reason_for_call == "School")
-		{
-			if(credit_filter>0)
-			{
-				refresh_response_table();
-				hide_all_slides();
-				$("#credit_check_slide").show();
-				$("#credit_check_question").focus();
-			}
-			else
-			{
-				refresh_response_table();
-				hide_all_slides();
-				$("#transfer_to_lobos_school_slide").show();
-			}
-		}
-		else
-		{
-			refresh_response_table();
-			hide_all_slides();
-			$('#license_number_slide').show();
-			$("#license_number_question").focus();
-		}
-	}
-	else if(is_valid && accidents > 0)
-	{
+	}else{
 		refresh_response_table();
 		hide_all_slides();
-		$('#accident_explanation_slide').show();
-		$("#accident_explanation_question").focus();
-		
+		if(accidents==0){
+			if(reason_for_call == "School"){
+				$("#fifteen_week_slide").show();
+				$("#fifteen_week_question").focus();
+			}
+			else if(reason_for_call=="Class A"){
+				$('#otr_6_slide').show();
+				$("#otr_6_question").focus();
+			}
+		}else if(accidents>1){
+			if(reason_for_call=="School")
+			{
+				$("#school_opportunity_slide").show();
+				$("#school_opportunity_question").focus();
+			}
+			else if(reason_for_call=="Class A")
+			{
+				$('#knight_or_crst_slide').show();
+				$("#knight_or_crst_question").focus();
+			}
+		}else if(accidents==1){
+			$('#accident_explanation_slide').show();
+			$("#accident_explanation_question").focus();
+		}
 	}
 }//number_of_accidents_next
 function number_of_tickets_next(){
 	var tickets = $("#number_of_tickets_question").val();
 	var max_tickets = $("#max_tickets_filter").val();
 	var reason_for_call = $("#reason_for_call_question").val();
-	var is_valid = true;
 	
 	//MAKE SLIDE 8 INVISIBLE, MOVE ON TO NEXT QUESTION, BASED ON RESPONSE
 	if(tickets=="")
 	{
-		is_valid = false;
 		alert("Please select a number of tickets.");
+	}else{
+		refresh_response_table();
+		hide_all_slides();
+		if(tickets=="0"){
+			$('#number_of_accidents_slide').show();
+			$("#number_of_accidents_question").focus();
+		}else if(tickets>2){
+			if(reason_for_call=="School"){
+				$("#school_opportunity_slide").show();
+				$("#school_opportunity_question").focus();
+			}else if(reason_for_call=="Class A"){
+				$('#knight_or_crst_slide').show();
+				$("#knight_or_crst_question").focus();
+			}
+		}else if(tickets<=2){
+			$('#ticket_explanation_slide').show();
+			$("#ticket_explanation_question").focus();
+		}
 	}
 	
-	else if(tickets=="0" && is_valid)
-	{
-		refresh_response_table();
-		hide_all_slides();
-		$('#number_of_accidents_slide').show();
-		$("#number_of_accidents_question").focus();
-	}
-	else
-	{
-		refresh_response_table();
-		hide_all_slides();
-		$('#ticket_explanation_slide').show();
-		$("#ticket_explanation_question").focus();
-	}
+	
 }//number_of_tickets_next
 function otr_6_next(){
 	
 	//MAKE SLIDE 13 INVISIBLE, MOVE ON TO NEXT QUESTION, BASED ON RESPONSE
 	var resp = $("#otr_6_question").val();
-	var is_valid = true;
 	
-	if(resp=="")
-	{
-		is_valid = false;
+	if(resp==""){
 		alert("Please select a response.");
-	}
-	else if(resp=="Yes" && is_valid)
-	{
-		refresh_response_table();
+	}else{
 		hide_all_slides();
-		$('#availability_date_slide').show();
-		$("#availability_date_question").focus();
-	}
-	else if(is_valid)
-	{
 		refresh_response_table();
-		hide_all_slides();
-		$('#knight_or_crst_slide').show();
-		$("#knight_or_crst_question").focus();
+		if(resp=="Yes"){
+			$('#team_driving_slide').show();
+			$("#availability_date_question").focus();
+		}else if(resp=="No"){
+			$('#two_week_slide').show();
+			$("#team_driving_question").focus();
+		}
 	}
-	
 }//otr_6_next
 function parole_slide_next(){
 	var parole_question = $("#parole_question").val();
@@ -846,19 +797,20 @@ function six_week_next(){
 	
 	if(six_week_response==""){
 		alert("Please enter the response.");
-	}
-	else if(six_week_response=="Yes"){
+	}else{
 		hide_all_slides();
-		if(reason_for_call=="Class A"){
-			$("#knight_or_crst_slide").show();
-			$("#knight_or_crst_question").focus();
-		}else if(reason_for_call=="School"){
-			$("#school_opportunity_slide").show();
-			$("#school_opportunity_question").focus();
+		if(six_week_response=="Yes"){
+			if(reason_for_call=="Class A"){
+				$("#knight_or_crst_slide").show();
+				$("#knight_or_crst_question").focus();
+			}else if(reason_for_call=="School"){
+				$("#school_opportunity_slide").show();
+				$("#school_opportunity_question").focus();
+			}
+		}else{
+			$("#number_of_tickets_slide").show();
+			$("#number_of_tickets_question").focus();
 		}
-	}else if(six_week_response=="No"){
-		$("#number_of_tickets_slide").show();
-		$("#number_of_tickets_question").focus();
 	}
 }
 function source_of_call_next(){
@@ -918,43 +870,34 @@ function submit_lead_next(){
 }
 function team_driving_next(){
 	
-	//MAKE SLIDE 13 INVISIBLE, MOVE ON TO NEXT QUESTION, BASED ON RESPONSE
 	var team_response = $('#team_driving_question').val();
-	var is_valid = true;
 	
-	if(team_response=="")
-	{
-		is_valid = false;
+	if(team_response==""){
 		alert("Please select a response.");
-	}
-	else if(team_response=="Yes" && is_valid)
-	{
+	}else{
 		refresh_response_table();
 		hide_all_slides();
-		$('#otr_6_slide').show();
-		$("#otr_6_question").focus()
-	}
-	else if(is_valid)
-	{
-		refresh_response_table();
-		hide_all_slides();
-		$('#knight_or_crst_slide').show();
-		$("#knight_or_crst_question").focus();
+		if(team_response=="Yes"){
+			$('#license_number_slide').show();
+			$("#license_number_question").focus();
+		}else{
+			if(reason_for_call=="School"){
+				$('#school_opportunity_slide').show();
+				$("#school_opportunity_question").focus();
+			}else if(reason_for_call=="Class A"){
+				$('#knight_or_crst_slide').show();
+				$("#knight_or_crst_question").focus();
+			}
+		}
 	}
 }//team_driving_next
 function ticket_explanation_next(){
 	
-	//MAKE SLIDE 9 INVISIBLE, MOVE ON TO NEXT QUESTION, BASED ON RESPONSE
 	var ticket_explanation = $('#ticket_explanation_question').val();
-	var is_valid = true;
 	
-	if(ticket_explanation=="")
-	{
-		is_valid = false;
+	if(ticket_explanation==""){
 		alert("Please write in an explanation.");
-	}
-	else
-	{
+	}else{
 		refresh_response_table();
 		hide_all_slides();
 		$('#number_of_accidents_slide').show();
@@ -1008,6 +951,38 @@ function to_notes(){
 	$("#notes_on_lead_slide").show();
 	$("#notes_on_lead_input").focus();
 }
+function two_weeks_next(){
+	var response = $("#two_weeks_question").val();
+	
+	if(response==""){
+		alert("Please enter the response.");
+	}else{
+		hide_all_slides();
+		if(response=="Yes"){
+			if(reason_for_call=="School"){
+				$("#school_opportunity_slide").show();
+				$("#school_opportunity_question").focus();
+			}else if(reason_for_call=="Class A"){
+				$("#knight_or_crst_slide").show();
+				$("#knight_or_crst_question").focus();
+			}
+		}else{
+			$("#non_qualifier_slide").show();
+		}
+	}
+}
+function valid_cdl_next(){
+	var valid_cdl = $("#valid_cdl_question").val();
+	
+	hide_all_slides();
+	
+	if(valid_cdl=="Yes"){
+		$("#six_week_slide").show();
+		$("#six_week_question").focus();
+	}else if(valid_cdl=="No"){
+		$("#non_qualifier_slide").show();
+	}
+}
 function valid_license_next(){
 	var valid_license = $("#valid_license_question").val();
 	
@@ -1015,6 +990,7 @@ function valid_license_next(){
 	
 	if(valid_license=="Yes"){
 		$("#address_slide").show();
+		$("#address").focus();
 	}else if(valid_license=="No"){
 		$("#non_qualifier_slide").show();
 	}
@@ -1057,6 +1033,10 @@ function hide_all_slides(){
 	$("#parole_slide").hide();
 	$("#email_slide").hide();
 	$("#valid_license_slide").hide();
+	$("#six_week_slide").hide();
+	$("#valid_cdl_slide").hide();
+	$("#fifteen_week_slide").hide();
+	
 }//hide_all_slides
 
 
