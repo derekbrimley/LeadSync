@@ -31,7 +31,7 @@
 	{
 		$CI =& get_instance();
 		
-		//echo '<br>'/ENVIRONMENT;
+		echo '<br>'/ENVIRONMENT;
 		
 		//DEFAULT TITLE
 		if(empty($title))
@@ -219,8 +219,7 @@
 		$user_id = $CI->session->userdata('user_id');
 		$role = $CI->session->userdata('role');
 		
-		if($role == 'Client')
-		{
+		if($role == 'Client'){
 			if($secure_file["permission"] == 'None')
 			{
 				return false;
@@ -234,8 +233,7 @@
 				return true;
 			}
 		}
-		else
-		{
+		else{
 			return true;
 		}
 		
