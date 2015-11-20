@@ -1147,7 +1147,7 @@
 						</div>
 						<button type="button" onclick="two_weeks_next()" class="next_button" style="margin-top:180px;">NEXT</button>
 					</div>
-					<div  style="float:right" class="slide" id="valid_cdl_slide">
+					<div style="float:right" class="slide" id="valid_cdl_slide">
 						<div class="slide_title">Valid CDL</div>
 						<div class="slide_script">
 							<p>"Do you have a valid CDL?"</p>
