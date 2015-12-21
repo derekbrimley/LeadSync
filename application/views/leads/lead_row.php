@@ -62,7 +62,6 @@
 		</td>
 		<td onclick="open_lead_details(<?= $row ?>)" title="<?php echo $lead['why_called_in']?>" class="ellipsis" style="width:47px;"><?php echo $lead['why_called_in']?></td>
 		<td onclick="open_lead_details(<?= $row ?>)" title="<?php echo $lead['first_name']." ".$lead['last_name']?>" style="width:80px;" class="ellipsis" style="width:120px;"><?php echo $lead['first_name']." ".$lead['last_name']?></td>
-		<td onclick="open_lead_details(<?= $row ?>)" title="<?php echo $lead['age'];?>" style="width:30px;"><?php echo $lead['age'] ?></td>
 		<td onclick="open_lead_details(<?= $row ?>)" title="<?php echo $formatted_phone_number ?>" class="ellipsis" style="width:77px;"><?php echo $formatted_phone_number ?></td>
 		<td onclick="open_lead_details(<?= $row ?>)" title="<?php echo $recruiter_name?>" class="ellipsis" style="width:74px;"><?php echo $recruiter_name ?></td>
 		<td onclick="open_lead_details(<?= $row ?>)" title="<?php echo $lead['submitted_to']?>" class="ellipsis" style="width:72px;"><?php echo $lead['submitted_to'] ?></td>

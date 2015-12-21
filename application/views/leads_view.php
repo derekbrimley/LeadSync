@@ -117,7 +117,6 @@
 						<td style="width:53px;">Availability Date</td>
 						<td style="width:53px;">Lead Type</td>
 						<td style="width:92px;">Name</td>
-						<td style="width:38px;">Age</td>
 						<td style="width:90px;">Phone #</td>
 						<td style="width:85px;">Recruiter</td>
 						<td style="width:83px;">Submitted To</td>
