@@ -48,25 +48,25 @@
 				<tr style="height:25px;">
 					<td>First Name</td>
 					<td style="text-align:left;">
-						<input placeholder="Enter First Name..." id="first_name_input" name="first_name_input" class="detail_form_input" type="text" value="<?=$lead['first_name']?>" style="width:170px;position:relative;left:14px;text-align:left;border:none;background-color:transparent;margin-right:5px;"/>
+						<input placeholder="Enter First Name..." id="first_name_input" name="first_name_input" class="detail_form_input" type="text" value="<?=$lead['first_name']?>" style="width:155px;position:relative;left:5px;text-align:left;border:none;background-color:transparent;margin-right:5px;"/>
 					</td>
 				</tr>
 				<tr style="height:25px;">
 					<td>Last Name</td>
 					<td style="text-align:left;">
-						<input placeholder="Enter Last Name..." id="last_name_input" name="last_name_input" class="detail_form_input" style="width:170px;position:relative;left:14px;border:none;background-color:transparent;text-align:left;margin-right:5px;"type="text" value="<?=$lead['last_name'] ?>" />
+						<input placeholder="Enter Last Name..." id="last_name_input" name="last_name_input" class="detail_form_input" style="width:155px;position:relative;left:5px;border:none;background-color:transparent;text-align:left;margin-right:5px;"type="text" value="<?=$lead['last_name'] ?>" />
 					</td>
 				</tr>
 				<tr style="height:25px;">
 					<td>Address</td>
 					<td style="text-align:left;">
-						<input placeholder="Enter Address..." id="address_input" name="address_input" class="detail_form_input" style="width:170px;position:relative;left:14px;border:none;background-color:transparent;text-align:left;margin-right:5px;"type="text" value="<?=$lead['current_address'] ?>" />
+						<input placeholder="Enter Address..." id="address_input" name="address_input" class="detail_form_input" style="width:155px;position:relative;left:5px;border:none;background-color:transparent;text-align:left;margin-right:5px;"type="text" value="<?=$lead['current_address'] ?>" />
 					</td>
 				</tr>
 				<tr style="height:25px;">
 					<td>City</td>
 					<td style="text-align:left;">
-						<input placeholder="Enter City..." id="city_input" name="city_input" class="detail_form_input" style="width:170px;position:relative;left:14px;border:none;background-color:transparent;text-align:left;margin-right:5px;"type="text" value="<?=$lead['current_city'] ?>" />
+						<input placeholder="Enter City..." id="city_input" name="city_input" class="detail_form_input" style="width:155px;position:relative;left:5px;border:none;background-color:transparent;text-align:left;margin-right:5px;"type="text" value="<?=$lead['current_city'] ?>" />
 					</td>
 				</tr>
 				<tr style="height:25px;">
@@ -127,31 +127,31 @@
 								"WY" => "WY",
 							);
 						?>
-						<?php echo form_dropdown('state_input',$tickets_options,$lead["current_state"],' id="state_input" class="detail_form_input" style="width:170px;position:relative;left:10px;border:none;background-color:transparent; text-align:left;margin-right:5px;"');?>
+						<?php echo form_dropdown('state_input',$tickets_options,$lead["current_state"],' id="state_input" class="detail_form_input" style="width:155px;position:relative;border:none;background-color:transparent; text-align:left;margin-right:5px;"');?>
 					</td>
 				</tr>
 				<tr style="height:25px;">
 					<td>Zip Code</td>
 					<td style="text-align:left;">
-						<input placeholder="Enter Zip Code..." id="zip_code_input" name="zip_code_input" class="detail_form_input" style="width:170px;position:relative;left:14px;border:none;background-color:transparent;text-align:left;margin-right:5px;"type="text" value="<?=$lead['current_zip_code'] ?>" />
+						<input placeholder="Enter Zip Code..." id="zip_code_input" name="zip_code_input" class="detail_form_input" style="width:155px;position:relative;left:5px;border:none;background-color:transparent;text-align:left;margin-right:5px;"type="text" value="<?=$lead['current_zip_code'] ?>" />
 					</td>
 				</tr>
 				<tr style="height:25px;">
 					<td>Phone Number</td>
 					<td style="text-align:left;">
-						<input placeholder="Enter Phone Number..." id="phone_number_input" name="phone_number_input" class="detail_form_input" style="width:170px;position:relative;left:14px;border:none;background-color:transparent;text-align:left;margin-right:5px;"type="text" value="<?=$formatted_phone_number ?>" ?>
+						<input placeholder="Enter Phone Number..." id="phone_number_input" name="phone_number_input" class="detail_form_input" style="width:155px;position:relative;left:5px;border:none;background-color:transparent;text-align:left;margin-right:5px;"type="text" value="<?=$formatted_phone_number ?>" ?>
 					</td>
 				</tr>
 				<tr style="height:25px;">
 					<td>Email</td>
 					<td style="text-align:left;">
-						<input placeholder="Enter Email..." id="email_input" name="email_input" class="detail_form_input" style="width:170px;position:relative;left:14px;border:none;background-color:transparent;text-align:left;margin-right:5px;"type="text" value="<?=$lead['email'] ?>" ?>
+						<input placeholder="Enter Email..." id="email_input" name="email_input" class="detail_form_input" style="width:155px;position:relative;left:5px;border:none;background-color:transparent;text-align:left;margin-right:5px;"type="text" value="<?=$lead['email'] ?>" ?>
 					</td>
 				</tr>
 				<tr style="height:25px;">
 					<td>Availability Date</td>
 					<td style="text-align:left;">
-						<input onchange="edit_lead_details(<?=$lead['id']?>)" placeholder="Enter Date..." id="availability_date_input_<?=$lead['id']?>" name="availability_date_input"  style="width:170px;position:relative;left:14px;border:none;background-color:transparent;text-align:left;margin-right:5px;"type="text" 
+						<input onchange="edit_lead_details(<?=$lead['id']?>)" placeholder="Enter Date..." id="availability_date_input_<?=$lead['id']?>" name="availability_date_input"  style="width:155px;position:relative;left:5px;border:none;background-color:transparent;text-align:left;margin-right:5px;"type="text" 
 							value="<?php if(!is_null($lead['availability_date'])):?><?=date('m/d/Y', strtotime($lead['availability_date'])); ?><?php endif ?>"/>
 					</td>
 				</tr>
@@ -172,7 +172,7 @@
 								"8" => "8",
 							);
 						?>
-						<?php echo form_dropdown('number_of_tickets_input',$tickets_options,$lead["number_of_tickets"],' id="number_of_tickets_input" class="detail_form_input" style="width:170px;position:relative;left:10px;border:none;background-color:transparent; text-align:left;margin-right:5px;"');?>
+						<?php echo form_dropdown('number_of_tickets_input',$tickets_options,$lead["number_of_tickets"],' id="number_of_tickets_input" class="detail_form_input" style="width:155px;position:relative;border:none;background-color:transparent; text-align:left;margin-right:5px;"');?>
 					</td>
 				</tr>
 				<tr style="height:25px;">
@@ -192,13 +192,13 @@
 								"8" => "8",
 							);
 						?>
-						<?php echo form_dropdown('number_of_accidents_input',$accidents_options,$lead['number_of_accidents'],' id="number_of_accidents_input" class="detail_form_input" style="width:170px;position:relative;left:10px;border:none;background-color:transparent; text-align:left;margin-right:5px;"');?>
+						<?php echo form_dropdown('number_of_accidents_input',$accidents_options,$lead['number_of_accidents'],' id="number_of_accidents_input" class="detail_form_input" style="width:155px;position:relative;border:none;background-color:transparent; text-align:left;margin-right:5px;"');?>
 					</td>
 				</tr>
 				<tr style="height:25px;">
 					<td>Credit Score</td>
 					<td style="text-align:left;">
-						<?php echo form_dropdown('credit_score_input',$credit_options,$lead['credit_score'],' id="credit_score_input" class="detail_form_input" style="width:170px;position:relative;left:10px;border:none;background-color:transparent; text-align:left;margin-right:5px;"');?>
+						<?php echo form_dropdown('credit_score_input',$credit_options,$lead['credit_score'],' id="credit_score_input" class="detail_form_input" style="width:155px;position:relative;border:none;background-color:transparent; text-align:left;margin-right:5px;"');?>
 					</td>
 				</tr>
 				<tr style="height:25px;">
@@ -211,25 +211,25 @@
 								"No" => "No",
 							);
 						?>
-						<?php echo form_dropdown('cdl_input',$cdl_options,$lead['cdl'],' id="cdl_input" class="detail_form_input" style="width:170px;position:relative;left:10px;border:none;background-color:transparent; text-align:left;margin-right:5px;"');?>
+						<?php echo form_dropdown('cdl_input',$cdl_options,$lead['cdl'],' id="cdl_input" class="detail_form_input" style="width:155px;position:relative;border:none;background-color:transparent; text-align:left;margin-right:5px;"');?>
 					</td>
 				</tr>
 				<tr style="height:25px;">
 					<td>Date of Birth</td>
 					<td style="text-align:left;">
-						<input placeholder="Enter Date of Birth..." id="dob_input_<?=$lead['id']?>" name="dob_input" class="detail_form_input" style="width:170px;position:relative;left:14px;border:none;background-color:transparent;text-align:left;margin-right:5px;"type="text" value="<?php if(!is_null($lead['dob'])):?><?=date('m/d/Y', strtotime($lead['dob'])); ?><?php endif ?>" />
+						<input placeholder="Enter Date of Birth..." id="dob_input_<?=$lead['id']?>" name="dob_input" class="detail_form_input" style="width:155px;position:relative;left:5px;border:none;background-color:transparent;text-align:left;margin-right:5px;"type="text" value="<?php if(!is_null($lead['dob'])):?><?=date('m/d/Y', strtotime($lead['dob'])); ?><?php endif ?>" />
 					</td>
 				</tr>
 				<tr style="height:25px;">
 					<td>License Number</td>
 					<td style="text-align:left;">
-						<input placeholder="Enter License Number..." id="license_number_input" name="license_number_input" class="detail_form_input" style="width:170px;position:relative;left:14px;border:none;background-color:transparent;text-align:left;margin-right:5px;"type="text" value="<?=$lead['current_license_number'] ?>" />
+						<input placeholder="Enter License Number..." id="license_number_input" name="license_number_input" class="detail_form_input" style="width:155px;position:relative;left:5px;border:none;background-color:transparent;text-align:left;margin-right:5px;"type="text" value="<?=$lead['current_license_number'] ?>" />
 					</td>
 				</tr>
 				<tr style="height:25px;">
 					<td>License State</td>
 					<td style="text-align:left;">
-						<input placeholder="Enter License State..." id="license_state_input" name="license_state_input" class="detail_form_input" style="width:170px;position:relative;left:14px;border:none;background-color:transparent;text-align:left;margin-right:5px;"type="text" value="<?=$lead['current_license_state'] ?>" />
+						<input placeholder="Enter License State..." id="license_state_input" name="license_state_input" class="detail_form_input" style="width:155px;position:relative;left:5px;border:none;background-color:transparent;text-align:left;margin-right:5px;"type="text" value="<?=$lead['current_license_state'] ?>" />
 					</td>
 				</tr>
 				<tr style="height:25px;">
@@ -242,7 +242,7 @@
 								"No" => "No",
 							);
 						?>
-						<?php echo form_dropdown('ok_w_teams_input',$team_options,$lead['drive_team'],' id="ok_w_teams_input" class="detail_form_input" style="width:170px;position:relative;left:10px;border:none;background-color:transparent; text-align:left;margin-right:5px;"');?>
+						<?php echo form_dropdown('ok_w_teams_input',$team_options,$lead['drive_team'],' id="ok_w_teams_input" class="detail_form_input" style="width:155px;position:relative;border:none;background-color:transparent; text-align:left;margin-right:5px;"');?>
 					</td>
 				</tr>
 				<tr style="height:25px;">
@@ -255,7 +255,7 @@
 								"No" => "No",
 							);
 						?>
-						<?php echo form_dropdown('ok_w_otr_input',$otr_options,$lead['drive_otr'],' id="ok_w_otr_input" class="detail_form_input" style="width:170px;position:relative;left:10px;border:none;background-color:transparent; text-align:left;margin-right:5px;"');?>
+						<?php echo form_dropdown('ok_w_otr_input',$otr_options,$lead['drive_otr'],' id="ok_w_otr_input" class="detail_form_input" style="width:155px;position:relative;border:none;background-color:transparent; text-align:left;margin-right:5px;"');?>
 					</td>
 				</tr>
 				<tr style="height:25px;">
@@ -268,7 +268,7 @@
 								"Outbound" => "Outbound",
 							);
 						?>
-						<?php echo form_dropdown('call_type_input',$call_type_options,$lead['inbound_or_outbound'],' id="call_type_input" class="detail_form_input" style="width:170px;position:relative;left:10px;border:none;background-color:transparent; text-align:left;margin-right:5px;"');?>
+						<?php echo form_dropdown('call_type_input',$call_type_options,$lead['inbound_or_outbound'],' id="call_type_input" class="detail_form_input" style="width:155px;position:relative;border:none;background-color:transparent; text-align:left;margin-right:5px;"');?>
 					</td>
 				</tr>
 				<tr style="height:25px;">
@@ -282,7 +282,7 @@
 								"Other" => "Other",
 							);
 						?>
-						<?php echo form_dropdown('lead_type_input',$lead_type_options,$lead['why_called_in'],' id="lead_type_input" class="detail_form_input" style="width:170px;position:relative;left:10px;border:none;background-color:transparent; text-align:left;margin-right:5px;"');?>
+						<?php echo form_dropdown('lead_type_input',$lead_type_options,$lead['why_called_in'],' id="lead_type_input" class="detail_form_input" style="width:155px;position:relative;border:none;background-color:transparent; text-align:left;margin-right:5px;"');?>
 					</td>
 				</tr>
 				<tr style="height:25px;">
@@ -300,13 +300,13 @@
 								"Non-Recruiting Call" => "Non-Recruiting Call",
 							);
 						?>
-					<?php echo form_dropdown('submitted_to_input',$submitted_options,$lead['submitted_to'],' id="submitted_to_input" class="detail_form_input" style="width:170px;position:relative;left:10px;border:none;background-color:transparent; text-align:left;margin-right:5px;"');?>
+					<?php echo form_dropdown('submitted_to_input',$submitted_options,$lead['submitted_to'],' id="submitted_to_input" class="detail_form_input" style="width:155px;position:relative;border:none;background-color:transparent; text-align:left;margin-right:5px;"');?>
 					</td>
 				</tr>
 				<tr style="height:25px;">
 					<td>Assigned Recruiter</td>
 					<td>
-						<?php echo form_dropdown('assigned_recruiter',$recruiter_options,$lead["assigned_recruiter_id"],'id="assigned_recruiter" class="detail_form_input" style="width:170px;position:relative;left:10px;border:none;background-color:transparent; text-align:left;margin-right:5px;"');?>
+						<?php echo form_dropdown('assigned_recruiter',$recruiter_options,$lead["assigned_recruiter_id"],'id="assigned_recruiter" class="detail_form_input" style="width:155px;position:relative;border:none;background-color:transparent; text-align:left;margin-right:5px;"');?>
 					</td>
 				</tr>
 				<tr style="height:25px;">
@@ -325,7 +325,7 @@
 								"Not Interested" => "Not Interested",
 							);
 						?>
-						<?php echo form_dropdown('lead_status_input',$status_options,$lead['lead_status'],' id="lead_status_input" class="detail_form_input" style="width:170px;position:relative;left:10px;border:none;background-color:transparent; text-align:left;margin-right:5px;"');?>
+						<?php echo form_dropdown('lead_status_input',$status_options,$lead['lead_status'],' id="lead_status_input" class="detail_form_input" style="width:155px;position:relative;border:none;background-color:transparent; text-align:left;margin-right:5px;"');?>
 					</td>
 				</tr>
 			</table>
@@ -361,7 +361,7 @@
 						<input name="lead_id_input" id="lead_id_input" type="hidden" value="<?=$lead["id"]?>" />
 						<tr style="height:25px;">
 							<td style="">
-								<input onchange="update_action_item(<?=$action_item_id?>)" id="action_item_note_input_<?=$action_item_id?>" name="action_item_note_input" type="text" class="action_item_form_input" value="<?=$action_item['note']?>" style="border:none;background-color:transparent;width:279px;padding-left:7px;" />
+								<input onchange="update_action_item(<?=$action_item_id?>)" id="action_item_note_input_<?=$action_item_id?>" name="action_item_note_input" type="text" class="action_item_form_input" value="<?=$action_item['note']?>" title="<?=$action_item['note']?>" style="border:none;background-color:transparent;width:279px;padding-left:7px;" />
 							</td>
 							<td style="">
 								<script>$("#due_date_input_<?=$action_item_id?>").datepicker();</script>
