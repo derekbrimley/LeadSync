@@ -294,9 +294,9 @@
 								"1" => "Craigslist",
 								"2" => "BackPage",
 								"3" => "Rhino",
-								"4" => "Google/websearch",
-								"5" => "Indeed",
-								"6" => "Other",
+								"5" => "Google/websearch",
+								"6" => "Indeed",
+								"4" => "Other",
 							);
 						?>
 						<?php echo form_dropdown('lead_source_input',$lead_type_options,$lead['lead_source_id'],' id="lead_source_input" class="detail_form_input" style="width:155px;position:relative;border:none;background-color:transparent; text-align:left;margin-right:5px;"');?>

@@ -248,13 +248,13 @@ class Leads extends MY_Controller {
 				}else if($lead_source_filter=="BackPage"){
 					$where = $where." AND lead_source_id = 2";
 				}else if($lead_source_filter=="Rhino"){
-					$where = $where." AND lead_source_id = 4";
+					$where = $where." AND lead_source_id = 3";
 				}else if($lead_source_filter=="Google/websearch"){
 					$where = $where." AND lead_source_id = 5";
 				}else if($lead_source_filter=="Indeed"){
 					$where = $where." AND lead_source_id = 6";
 				}else if($lead_source_filter=="Other"){
-					$where = $where." AND lead_source_id = 3";
+					$where = $where." AND lead_source_id = 4";
 				}
 			}
 			
