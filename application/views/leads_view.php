@@ -67,6 +67,8 @@
 							<option>Craigslist</option>
 							<option>BackPage</option>
 							<option>Rhino</option>
+							<option>Google/websearch</option>
+							<option>Indeed</option>
 							<option>Other</option>
 						</select><br><br>
 						Submitted To

@@ -170,8 +170,7 @@
 			})//ajax
 	}
 	
-	function edit_lead_details(id)
-	{
+	function edit_lead_details(id){
 		var dataString = $("#driver_details_form_"+id).serialize();
 		var availability_date = $("#availability_date_input").val();
 		console.log(dataString);

@@ -286,6 +286,23 @@
 					</td>
 				</tr>
 				<tr style="height:25px;">
+					<td>Lead Source</td>
+					<td style="text-align:left;">
+						<?php
+							$lead_type_options =array(
+								"" => "Select",
+								"1" => "Craigslist",
+								"2" => "BackPage",
+								"3" => "Rhino",
+								"4" => "Google/websearch",
+								"5" => "Indeed",
+								"6" => "Other",
+							);
+						?>
+						<?php echo form_dropdown('lead_source_input',$lead_type_options,$lead['lead_source_id'],' id="lead_source_input" class="detail_form_input" style="width:155px;position:relative;border:none;background-color:transparent; text-align:left;margin-right:5px;"');?>
+					</td>
+				</tr>
+				<tr style="height:25px;">
 					<td>Submitted to</td>
 					<td style="text-align:left;">
 						<?php

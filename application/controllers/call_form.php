@@ -116,7 +116,7 @@ class Call_Form extends MY_Controller {
 		$first_name = $_POST["first_name"];
 		$last_name = $_POST["last_name"];
 		$phone_number = $_POST["phone_number"];
-		$lead_source_id = $_POST["inbound_or_outbound_question"];
+		$lead_source_id = $_POST["source_of_call_question"];
 		$user_submitted = $this->session->userdata('username');
 		
 		$lead = array();
@@ -126,11 +126,11 @@ class Call_Form extends MY_Controller {
 		$lead["first_name"] = $first_name;
 		$lead["last_name"] = $last_name;
 		$lead["phone_number"] = $phone_number;
+		$lead['lead_source_id'] = $lead_source_id;
 		$lead["lead_status"] = "Call Back";
 		$lead["user_submitted"] = $user_submitted;
 		
-		if(empty($lead_id))
-		{
+		if(empty($lead_id)){
 			$where = null;
 			
 			$where["first_name"] = $first_name;
@@ -139,8 +139,7 @@ class Call_Form extends MY_Controller {
 			
 			$duplicate_lead = db_select_lead($where);
 			
-			if(empty($duplicate_lead))
-			{
+			if(empty($duplicate_lead)){
 				db_insert_lead($lead);
 				
 				$new_lead = db_select_lead($lead);
@@ -173,13 +172,10 @@ class Call_Form extends MY_Controller {
 				
 				
 			}
-			else
-			{
+			else{
 				echo "Lead already in the system!";
 			}
-		}
-		else
-		{
+		}else{
 			$where = null;
 			$where['id'] = $lead_id;
 			
@@ -196,8 +192,7 @@ class Call_Form extends MY_Controller {
 		}
 	}
 	
-	function create_partial_lead()
-	{
+	function create_partial_lead(){
 		//SET TIMEZONE
 		date_default_timezone_set('America/Denver');
 		$current_datetime = date("Y-m-d H:i:s");

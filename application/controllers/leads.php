@@ -242,23 +242,19 @@ class Leads extends MY_Controller {
 			}
 			
 			//LEAD SOURCE FILTER
-			if(!empty($lead_source_filter))
-			{
-				if($lead_source_filter=="Craigslist")
-				{
+			if(!empty($lead_source_filter)){
+				if($lead_source_filter=="Craigslist"){
 					$where = $where." AND lead_source_id = 1";
-				}
-				else if($lead_source_filter=="BackPage")
-				{
+				}else if($lead_source_filter=="BackPage"){
 					$where = $where." AND lead_source_id = 2";
-				}
-				else if($lead_source_filter=="Rhino")
-				{
+				}else if($lead_source_filter=="Rhino"){
 					$where = $where." AND lead_source_id = 3";
-				}
-				else if($lead_source_filter=="Other")
-				{
+				}else if($lead_source_filter=="Google/websearch"){
 					$where = $where." AND lead_source_id = 4";
+				}else if($lead_source_filter=="Indeed"){
+					$where = $where." AND lead_source_id = 5";
+				}else if($lead_source_filter=="Other"){
+					$where = $where." AND lead_source_id = 6";
 				}
 			}
 			
@@ -764,6 +760,7 @@ class Leads extends MY_Controller {
 		$ok_w_otr = $_POST['ok_w_otr_input'];
 		$call_type = $_POST['call_type_input'];
 		$lead_type = $_POST['lead_type_input'];
+		$lead_source = $_POST['lead_source_input'];
 		$submitted_to = $_POST['submitted_to_input'];
 		$lead_status = $_POST['lead_status_input'];
 		$assigned_recruiter_id = $_POST['assigned_recruiter'];
@@ -791,6 +788,7 @@ class Leads extends MY_Controller {
 		$set['drive_team'] = $ok_w_teams;
 		$set['drive_otr'] = $ok_w_otr;
 		$set['inbound_or_outbound'] = $call_type;
+		$set['lead_source_id'] = $lead_source;
 		$set['why_called_in'] = $lead_type;
 		$set['submitted_to'] = $submitted_to;
 		$set['assigned_recruiter_id'] = $assigned_recruiter_id;
